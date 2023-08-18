@@ -3,12 +3,11 @@ import pandas as pd
 
 # Setting values
 league_id =  5154
-top_gw = []
 top_gw_points = 0
-top_gw_player = []
+top_gws = []
+top_gw_players = []
 players = []
 players_ids = []
-
 
 # API Link
 league_api = 'https://fantasy.premierleague.com/api/leagues-classic/' + str(league_id) + '/standings'
@@ -33,18 +32,18 @@ for i in range(len(players_ids)):
     for week in player_data_json:
         # Comparing that gw points with the current maximum
         if week['points'] == top_gw_points: # if points value is identical to the current highest, append the winner to the list
-            top_gw_player.append(players[i])
-            top_gw.append(week['event'])
+            top_gw_players.append(players[i])
+            top_gws.append(week['event'])
 
         elif week['points'] > top_gw_points: # if the total points is higher than the value, remove the current winners and update the list
             top_gw_points = week['points']
-            top_gw.clear()
-            top_gw_player.clear()
-            top_gw_player.append(players[i])
-            top_gw.append(week['event'])
+            top_gws.clear()
+            top_gw_players.clear()
+            top_gw_players.append(players[i])
+            top_gws.append(week['event'])
 
 
 print('The top gameweek scored: ' + str(top_gw_points))
 print('The following players scored the maximum points at each of the following gameweeks')
-for winner in range(len(top_gw)):
-    print(str(top_gw_player[winner]) + ': ' + str(top_gw[winner]))
+for winner in range(len(top_gws)):
+    print(str(top_gw_players[winner]) + ': ' + str(top_gws[winner]))
