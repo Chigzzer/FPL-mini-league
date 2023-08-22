@@ -28,7 +28,7 @@ for event in month_data:
         continue
     months.append({'month_name':event['name'], 'gw_start':event['start_event'], 'gw_end':event['stop_event']})
 
-print(months)
+
 # Obtaining all the player's and their ids of each player in the league
 for item in json_league:
     player_dic = {'name': item['player_name'], 'player_id': item['entry']}
@@ -48,7 +48,7 @@ for player in players_dic:
         player_points.append(week['points']) # Adding that gameweek points to that player's points list
         # adding points to relevent month
         gw = week['event']
-        for month in months:
+        for month in months: # Getting which month the gw is in and adding the points to that month
             if gw <= month['gw_end'] and gw >= month['gw_start']:
                 if month['month_name'] not in player.keys():
                     player[month['month_name']] = 0 
@@ -68,7 +68,6 @@ for player in players_dic:
     # looking through the players chips to check if they have been used and what gameweek
     if player_chip_used:
         chips_used = {}
-        print(player_chip_used)
         for chips in player_chip_used:
             if chips['name'] == 'bboost':
                 chips_used["bench_boost"] = chips['event']
@@ -98,7 +97,7 @@ for month in months:
 
 
 # Printing out the current top scorer of the league
-
+"""
 
 print('The top gameweek scored: ' + str(top_gw_points))
 print('The following players scored the maximum points at each of the following gameweeks')
@@ -113,3 +112,5 @@ for month in months:
     print(month['month_name'] + 'Top Scorers who scored: ' + str(month['top_points']) + ' are:')
     for player in month['top_scorer']:
         print(player)
+
+        """
