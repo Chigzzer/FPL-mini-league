@@ -53,6 +53,8 @@ for player in players_dic:
                 if month['month_name'] not in player.keys():
                     player[month['month_name']] = 0 
                 player[month['month_name']] += week['points']
+                player[month['month_name']] -= week['event_transfers_cost']
+
         # Comparing that gw points with the current maximum
         if week['points'] == top_gw_points: # if points value is identical to the current highest, append the winner to the list
             top_gw_players.append(player['name'])
@@ -63,6 +65,7 @@ for player in players_dic:
             top_gw_players.clear()
             top_gw_players.append(player['name'])
             top_gws.append(week['event'])
+        player['total_points'] =  week['total_points']
     player["points"] = player_points # Adding player's points list to their dictionary
 
     # looking through the players chips to check if they have been used and what gameweek
