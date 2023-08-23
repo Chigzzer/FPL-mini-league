@@ -52,8 +52,7 @@ for player in players_dic:
             if gw <= month['gw_end'] and gw >= month['gw_start']:
                 if month['month_name'] not in player.keys():
                     player[month['month_name']] = 0 
-                player[month['month_name']] += week['points']
-                player[month['month_name']] -= week['event_transfers_cost']
+                player[month['month_name']] += week['points'] - week['event_transfers_cost']
 
         # Comparing that gw points with the current maximum
         if week['points'] == top_gw_points: # if points value is identical to the current highest, append the winner to the list
