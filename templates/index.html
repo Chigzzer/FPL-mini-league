@@ -16,4 +16,19 @@
     {% endfor %}
 </div>
 
+<div id="motm">
+    <div class="text">Manager of the months </div>
+    {% for index in range(months | length) %}
+        <div id="motm-month">
+            <div>{{months[index]['month_name']}}</div>
+            <div id="motm-players"> 
+                {% for player in months[index]['top_scorer'] %}
+                <div>Players: {{player}},</div>
+                {% endfor %}
+            </div>
+            <div>Points: {{months[index]['top_points']}}</div>
+        </div>  
+    {% endfor %}
+</div>
+
 {% endblock %}

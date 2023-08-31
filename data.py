@@ -92,9 +92,12 @@ for month in months:
         if 'top_scorer' not in month.keys():
             month['top_scorer'] = []
             month['top_points'] = 0
-        if player[month['month_name']] >=  month['top_points']:
+        if player[month['month_name']] >  month['top_points']:
             month['top_scorer'].clear()
             month['top_points'] = player[month['month_name']]
+            month['top_scorer'].append(player['name'])
+        elif player[month['month_name']] == month['top_points']:
+            print(player['name'])
             month['top_scorer'].append(player['name'])
 
 

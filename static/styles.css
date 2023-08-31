@@ -75,3 +75,13 @@ body{
     justify-content: space-evenly;
     gap: 5px;
 }
+
+#motm{
+    border: 1px green solid;
+}
+
+#motm-month{
+    border: 1px blue solid;
+    display: flex;
+    gap: 5px;
+}
