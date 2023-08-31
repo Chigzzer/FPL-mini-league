@@ -1,0 +1,19 @@
+{% extends "template.html" %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<div id="top-gw">
+    <div class="text">The players with the top scoring gameweek are</div>
+    {% for index in  range(top_gw_players | length) %}
+    <div class="top-gw-player">
+        <div class="top-gw-players">{{top_gw_players[index]}}</div>
+        <div class="top-gws">{{top_gws[index]}}</div>
+        <div class="top_gw_points">{{top_gw_points}}</div>
+    </div>  
+    {% endfor %}
+</div>
+
+{% endblock %}
