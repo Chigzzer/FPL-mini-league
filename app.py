@@ -9,7 +9,7 @@ app.config['Debug'] = True
 
 @app.route("/")
 def index():
-    return render_template("index.html", top_gw_points = data.top_gw_points, top_gw_players = data.top_gw_players, top_gws = data.top_gws, months = data.months)
+    return render_template("index.html", top_gw_points = data.top_gw_points, top_gw_players = data.top_gw_players, top_gws = data.top_gws, months = data.months, players = data.players_dic)
 
 
 if __name__ == '__main__':

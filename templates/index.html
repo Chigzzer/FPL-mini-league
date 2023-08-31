@@ -5,30 +5,61 @@
 {% endblock %}
 
 {% block body %}
-<div id="top-gw">
-    <div class="text">The players with the top scoring gameweek are</div>
-    {% for index in  range(top_gw_players | length) %}
-    <div class="top-gw-player">
-        <div class="top-gw-players">{{top_gw_players[index]}}</div>
-        <div class="top-gws">{{top_gws[index]}}</div>
-        <div class="top_gw_points">{{top_gw_points}}</div>
-    </div>  
-    {% endfor %}
-</div>
-
-<div id="motm">
-    <div class="text">Manager of the months </div>
-    {% for index in range(months | length) %}
-        <div id="motm-month">
-            <div>{{months[index]['month_name']}}</div>
-            <div id="motm-players"> 
-                {% for player in months[index]['top_scorer'] %}
-                <div>Players: {{player}},</div>
+<div id="main-body">
+    <div id="league-section">
+        <div class="title">League Table</div>
+        <div id="table">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+                {% for player in players %}
+                    <tr>
+                        <td><div>{{player['name']}}</div></td>
+                        <td><div>{{player['total_points']}}</div></td>
+                    </tr>
                 {% endfor %}
-            </div>
-            <div>Points: {{months[index]['top_points']}}</div>
-        </div>  
-    {% endfor %}
-</div>
+            </table>
+        </div>
+    </div>
 
+    <div id="top-gw">
+        <div class="title">Highest Scoring Gameweek</div>
+        <div class="text">The players with the top scoring gameweek are</div>
+        {% for index in  range(top_gw_players | length) %}
+        <div class="top-gw-player">
+            <div class="top-gw-players">{{top_gw_players[index]}}</div>
+            <div class="top-gws">{{top_gws[index]}}</div>
+            <div class="top_gw_points">{{top_gw_points}}</div>
+        </div>  
+        {% endfor %}
+    </div>
+
+    <div id="motm">
+        <div class="title">Manager of the Month</div>
+        <div id="motm-table">
+            <table class="table">
+                <tr>
+                    <th>Month</th>
+                    <th>Player</th>
+                    <th>Points</th>
+                </tr>
+                {% for index in range(months | length) %}
+                <tr>
+                    
+                        <td><div>{{months[index]['month_name']}}</div></td>
+                        <td><div id="motm-players"> 
+                            {% for player in months[index]['top_scorer'] %}
+                            <div>{{player}},</div>
+                            {% endfor %}
+                        </div></td>
+                        <td><div>{{months[index]['top_points']}}</div></td>
+                    
+                    </tr> 
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

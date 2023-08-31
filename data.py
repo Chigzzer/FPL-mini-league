@@ -10,7 +10,7 @@ top_gw_players = []
 players_dic = []
 current_gw = 0
 
-
+players_dic.append({'name': 'test', 'player_id': 27121})
 # API Link
 league_api = 'https://fantasy.premierleague.com/api/leagues-classic/' + str(league_id) + '/standings'
 general_api = 'https://fantasy.premierleague.com/api/bootstrap-static/'
@@ -99,6 +99,8 @@ for month in months:
         elif player[month['month_name']] == month['top_points']:
             print(player['name'])
             month['top_scorer'].append(player['name'])
+
+
 
 
 # Printing out the current top scorer of the league
