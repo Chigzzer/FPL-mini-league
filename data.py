@@ -10,7 +10,7 @@ top_gw_players = []
 players_dic = []
 current_gw = 0
 
-players_dic.append({'name': 'test', 'player_id': 27121})
+#players_dic.append({'name': 'test', 'player_id': 27121})
 # API Link
 league_api = 'https://fantasy.premierleague.com/api/leagues-classic/' + str(league_id) + '/standings'
 general_api = 'https://fantasy.premierleague.com/api/bootstrap-static/'
@@ -101,23 +101,3 @@ for month in months:
             month['top_scorer'].append(player['name'])
 
 
-
-
-# Printing out the current top scorer of the league
-"""
-
-print('The top gameweek scored: ' + str(top_gw_points))
-print('The following players scored the maximum points at each of the following gameweeks')
-for winner in range(len(top_gws)):
-    print(str(top_gw_players[winner]) + ': ' + str(top_gws[winner]))
-
-
-print('The top scorers for each month are below:')
-for month in months:
-    if 'top_scorer' not in month.keys():
-        continue
-    print(month['month_name'] + 'Top Scorers who scored: ' + str(month['top_points']) + ' are:')
-    for player in month['top_scorer']:
-        print(player)
-
-        """

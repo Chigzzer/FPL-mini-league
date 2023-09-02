@@ -11,3 +11,6 @@ for month in data.months:
     if 'top_scorer' not in month.keys():
         continue
     print("{} Managers of the Month: {}, scored {} points.".format(month['month_name'], ', '.join(month['top_scorer']), month['top_points']))
+
+
+print(data.players_dic)

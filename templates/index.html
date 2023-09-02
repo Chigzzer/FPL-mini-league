@@ -47,7 +47,6 @@
                 </tr>
                 {% for index in range(months | length) %}
                 <tr>
-                    
                         <td><div>{{months[index]['month_name']}}</div></td>
                         <td><div id="motm-players"> 
                             {% for player in months[index]['top_scorer'] %}
@@ -55,7 +54,6 @@
                             {% endfor %}
                         </div></td>
                         <td><div>{{months[index]['top_points']}}</div></td>
-                    
                     </tr> 
                 {% endfor %}
             </table>
