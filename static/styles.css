@@ -118,3 +118,8 @@ body{
 #motm{
     grid-column: 3 / 4;
 }
+
+
+.imagetest{
+    border:1px red solid
+}

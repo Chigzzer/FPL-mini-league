@@ -37,6 +37,7 @@ for item in json_league:
 # Looping through each player in league to get their data 
 for player in players_dic:
     player_points = []
+    player_running_total = [0]
     team_api = 'https://fantasy.premierleague.com/api/entry/' + str(player['player_id']) + '/history/'
     player_data = requests.get(team_api)
     player_data_json = player_data.json()
@@ -46,6 +47,7 @@ for player in players_dic:
     # Looping through each of the player's gameweek
     for week in player_current_data:
         player_points.append(week['points']) # Adding that gameweek points to that player's points list
+        player_running_total.append(week['total_points'])
         # adding points to relevent month
         gw = week['event']
         for month in months: # Getting which month the gw is in and adding the points to that month
@@ -66,7 +68,7 @@ for player in players_dic:
             top_gws.append(week['event'])
         player['total_points'] =  week['total_points']
     player["points"] = player_points # Adding player's points list to their dictionary
-
+    player['running_points'] = player_running_total
     # looking through the players chips to check if they have been used and what gameweek
     if player_chip_used:
         chips_used = {}
