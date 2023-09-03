@@ -31,10 +31,17 @@
         <div class="top-gw-player">
             <div class="top-gw-players">{{top_gw_players[index]}}</div>
             <div class="top-gws">{{top_gws[index]}}</div>
-            <div class="top_gw_points">{{top_gw_points}}</div>
+            <div class="top-gw-points">{{top_gw_points}}</div>
         </div>  
         {% endfor %}
     </div>
+
+
+    <div id="league-race">
+        <div class="graph-race"><img src="../static/plot.png" alt="plot"></div>
+    </div>
+
+
 
     <div id="motm">
         <div class="title">Manager of the Month</div>
@@ -48,11 +55,13 @@
                 {% for index in range(months | length) %}
                 <tr>
                         <td><div>{{months[index]['month_name']}}</div></td>
-                        <td><div id="motm-players"> 
-                            {% for player in months[index]['top_scorer'] %}
-                            <div>{{player}},</div>
-                            {% endfor %}
-                        </div></td>
+                        <td>
+                            <div id="motm-players"> 
+                                {% for player in months[index]['top_scorer'] %}
+                                    <div>{{player}}</div>
+                                {% endfor %}
+                            </div>
+                        </td>
                         <td><div>{{months[index]['top_points']}}</div></td>
                     </tr> 
                 {% endfor %}
