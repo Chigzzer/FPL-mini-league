@@ -130,6 +130,11 @@ button{
 .table{
     border-collapse: separate;
     border-spacing: 25px 2vh;
+    
+}
+
+table{
+    border-collapse: collapse;
 }
 
 #top-gw{
@@ -154,3 +159,6 @@ button{
     margin: 5px;
 }
 
+#chips{
+    font-size: x-small;
+}

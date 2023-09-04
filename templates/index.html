@@ -20,11 +20,19 @@
                 <tr>
                     <th>Name</th>
                     <th>Points</th>
+                    <th>Chips Used</th>
                 </tr>
                 {% for player in players %}
                     <tr>
                         <td><div>{{player['name']}}</div></td>
                         <td><div>{{player['total_points']}}</div></td>
+                        {% if player['chips'] %}
+                        <td><div id="chips">
+                            {% for key, val in player['chips'].items() %}
+                                <div>{{val[0]}}-GW: {{val[1]}}</div>
+                            {% endfor %}
+                        </div></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

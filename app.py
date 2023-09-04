@@ -39,8 +39,8 @@ def populate_page(id):
     league_name = data_results[5]
     current_league_id = data_results[6]
 
+    print(players_dic)
     generate_graph(players_dic)
-
     return render_template("index.html", current_league_id = current_league_id, top_gw_points = top_gw_points, top_gw_players = top_gw_players, top_gws = top_gws, months = months, players = players_dic, league_name = league_name)
 
 

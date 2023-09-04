@@ -83,15 +83,15 @@ def find_league_data(league_id):
             chips_used = {}
             for chips in player_chip_used:
                 if chips['name'] == 'bboost':
-                    chips_used["bench_boost"] = chips['event']
+                    chips_used["bench_boost"] = ["Bench Boost", chips['event']]
                 elif chips['name'] == 'freehit':
-                    chips_used["free_hit"] = chips['event']
+                    chips_used["free_hit"] = ['Free Hit', chips['event']]
                 elif chips['name'] == 'wildcard':
-                    chips_used["wildcard1"] = chips['event']
+                    chips_used["wildcard1"] = ['Wildcard 1', chips['event']]
                 elif chips['name'] == 'wcard2': # Need to confirm name after january
-                    chips_used["wildcard2"] = chips['event']
+                    chips_used["wildcard2"] = ['Wildcard2' ,chips['event']]
                 elif chips['name'] == '3xc':
-                    chips_used["triple_captain"] = chips['event']
+                    chips_used["triple_captain"] = ['Triple Captain', chips['event']]
             player['chips'] = chips_used
 
 
