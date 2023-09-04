@@ -127,14 +127,19 @@ button{
     align-items: center;
 }
 
-.table{
-    border-collapse: separate;
-    border-spacing: 25px 2vh;
-    
+table{
+    border-collapse:collapse;   
+    border: 1px pink solid;
 }
 
-table{
-    border-collapse: collapse;
+table tr{
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+th, td{
+    padding: 1%;
+    text-align: center;
 }
 
 #top-gw{
@@ -154,7 +159,7 @@ table{
 }
 
 .league-graph{
-    width: 45vw;
+    width: 40vw;
     height: auto;
     margin: 5px;
 }
