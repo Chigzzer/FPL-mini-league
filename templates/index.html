@@ -4,7 +4,12 @@
 <title>Home</title>
 {% endblock %}
 
-{% block header %} {{league_name}} {% endblock %}
+{% block header %} 
+<div class="league-name-id">
+    <div id="league-name">{{league_name}}</div>
+    <div id="league-id-value">(League ID: #{{current_league_id}})</div> 
+</div>
+{% endblock %}
 
 {% block body %}
 <div id="main-body">

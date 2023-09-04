@@ -20,6 +20,40 @@ body{
     flex-shrink: 0;
 }
 
+#league-name{
+    font-size: 50px;
+}
+
+#league-id-value{
+    font-size: 20px;
+    font-style: italic;
+}
+
+#league-id-form{
+    align-self: flex-end;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    padding: 5px;
+    align-content: center;
+}
+
+button{
+    padding: 5px;
+    height: auto;
+}
+
+#league-id-title{
+    font-size: 25px;
+}
+
+#league-id{
+    align-self: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: auto;
+}
+
 .title{
     font-size: 48px;
     align-self: center;
@@ -69,7 +103,6 @@ body{
     margin: 12px;;
 }
 
-
 #motm-month{
     display: flex;
     gap: 5px;
@@ -114,7 +147,6 @@ body{
 #league-race{
     grid-area: 2 / 2 / 3 / 3;
 }
-
 
 .league-graph{
     width: 45vw;

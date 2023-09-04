@@ -26,6 +26,7 @@ def find_league_data(league_id):
     # Obtaining league data
     league_data = requests.get(league_api)
     league_name = league_data.json()['league']['name']
+    league_id = league_data.json()['league']['id']
     json_league = league_data.json()['standings']['results']
     general_data = requests.get(general_api).json()
     month_data = general_data['phases']
@@ -109,5 +110,5 @@ def find_league_data(league_id):
             elif player[month['month_name']] == month['top_points']:
                 print(player['name'])
                 month['top_scorer'].append(player['name'])
-    return [players_dic, top_gws, top_gw_players, top_gw_points, months, league_name] 
+    return [players_dic, top_gws, top_gw_players, top_gw_points, months, league_name, league_id] 
 
