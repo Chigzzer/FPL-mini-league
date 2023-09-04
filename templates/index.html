@@ -4,6 +4,8 @@
 <title>Home</title>
 {% endblock %}
 
+{% block header %} {{league_name}} {% endblock %}
+
 {% block body %}
 <div id="main-body">
     <div id="league-section">
@@ -27,7 +29,7 @@
     <div id="top-gw">
         <div class="title">Highest Scoring Gameweek</div>
         <div class="text">The players with the top scoring gameweek are</div>
-        {% for index in  range(top_gw_players | length) %}
+        
 
         <table id="hsg-table" class="table">
             <tr>
@@ -35,13 +37,16 @@
                 <th>Gameweek</th>
                 <th>Points</th>
             </tr>
+            {% for index in  range(top_gw_players | length) %}
             <tr>
-                <td>{{top_gw_players[index]}}</td>
-                <td>{{top_gws[index]}}</td>
-                <td>{{top_gw_points}}</td>
+                <td><div>{{top_gw_players[index]}}</div></td>
+                <td><div>{{top_gws[index]}}</div></td>
+                {% if index == 0 %}
+                    <td id="top-gw-points" rowspan= "0"><div>{{top_gw_points}}</div></td>
+                {% endif %}
             </tr>
+            {% endfor %}
         </table>
-        {% endfor %}
     </div>
 
 

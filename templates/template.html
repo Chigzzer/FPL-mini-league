@@ -9,7 +9,14 @@
 </head>
 <body>
     <div class="header">
-        <div class="title"><p>The Superana League</p></div>
+        <div class="title"><p>{% block header %}{% endblock %}</p></div>
+        <div class="league-id">
+            <form method="post">
+                <label for="League ID">League ID</label>
+                <input type="number" name="League ID" id="league-id">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
         <div class="links">
             <a href="/">Home</a>
             <!---<a href="race">League Race</a>>--->
