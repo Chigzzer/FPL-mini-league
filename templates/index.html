@@ -28,11 +28,19 @@
         <div class="title">Highest Scoring Gameweek</div>
         <div class="text">The players with the top scoring gameweek are</div>
         {% for index in  range(top_gw_players | length) %}
-        <div class="top-gw-player">
-            <div class="top-gw-players">{{top_gw_players[index]}}</div>
-            <div class="top-gws">{{top_gws[index]}}</div>
-            <div class="top-gw-points">{{top_gw_points}}</div>
-        </div>  
+
+        <table id="hsg-table" class="table">
+            <tr>
+                <th>Player Name</th>
+                <th>Gameweek</th>
+                <th>Points</th>
+            </tr>
+            <tr>
+                <td>{{top_gw_players[index]}}</td>
+                <td>{{top_gws[index]}}</td>
+                <td>{{top_gw_points}}</td>
+            </tr>
+        </table>
         {% endfor %}
     </div>
 
