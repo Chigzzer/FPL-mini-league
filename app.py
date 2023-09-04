@@ -22,8 +22,6 @@ def index():
     plt.xlabel('Gameweek')
     plt.ylabel('Total Points')
     for player in data.players_dic:
-        print(col_index)
-        print(col[col_index])
         if col_index >= len(col):
             col_index = 0
         points = player['running_points']

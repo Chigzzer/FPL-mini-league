@@ -24,6 +24,7 @@ body{
     font-size: 48px;
     align-self: center;
     margin-left: 48px;
+    text-align: center;
 }
 
 .links{
@@ -115,3 +116,8 @@ body{
 }
 
 
+.league-graph{
+    width: 45vw;
+    height: auto;
+    margin: 5px;
+}
