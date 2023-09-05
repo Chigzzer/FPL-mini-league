@@ -12,91 +12,90 @@
 {% endblock %}
 
 {% block body %}
-<div id="main-body">
-    <div id="league-section">
-        <div class="title">League Table</div>
-        <div id="table">
-            <table class="table">
+<div id="league-section">
+    <div class="title">League Table</div>
+    <div id="table">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Chips Used</th>
+            </tr>
+            {% for player in players %}
                 <tr>
-                    <th>Name</th>
-                    <th>Points</th>
-                    <th>Chips Used</th>
+                    <td><div>{{player['name']}}</div></td>
+                    <td><div>{{player['total_points']}}</div></td>
+                    {% if player['chips'] %}
+                    <td><div id="chips">
+                        {% for key, val in player['chips'].items() %}
+                            <div>{{val[0]}}-GW: {{val[1]}}</div>
+                        {% endfor %}
+                    </div></td>
+                    {% endif %}
                 </tr>
-                {% for player in players %}
-                    <tr>
-                        <td><div>{{player['name']}}</div></td>
-                        <td><div>{{player['total_points']}}</div></td>
-                        {% if player['chips'] %}
-                        <td><div id="chips">
-                            {% for key, val in player['chips'].items() %}
-                                <div>{{val[0]}}-GW: {{val[1]}}</div>
-                            {% endfor %}
-                        </div></td>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-
-    <div id="top-gw">
-        <div class="title">Highest Scoring Gameweek</div>
-        <div class="text">The players with the top scoring gameweek are</div>
-        
-        <table id="hsg-table" class="table">
-            <tr>
-                <th class="tbh">Player Name</th>
-                <th class="tbh">Gameweek</th>
-                <th class="tbh">Points</th>
-            </tr>
-            <tr>
-                <td>
-                    {% for player in top_gw_players %}
-                    <div>{{player}}</div>
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for week in top_gws %}
-                    <div>{{week}}</div>
-                    {% endfor %}
-                </td>
-                <td>{{top_gw_points}}</td>
-            </tr>
+            {% endfor %}
         </table>
     </div>
+</div>
 
-
-    <div id="league-race">
-        <div class="title">League Race Graph</div>
-        <div class="graph-race"><img class="league-graph" src="../static/plot.png" alt="plot"></div>
-    </div>
-
-
-
-    <div id="motm">
-        <div class="title">Manager of the Month</div>
-        <div id="motm-table">
-            <table class="table">
-                <tr>
-                    <th>Month</th>
-                    <th>Player</th>
-                    <th>Points</th>
-                </tr>
-                {% for index in range(months | length) %}
-                <tr>
-                        <td><div>{{months[index]['month_name']}}</div></td>
-                        <td>
-                            <div id="motm-players"> 
-                                {% for player in months[index]['top_scorer'] %}
-                                    <div>{{player}}</div>
-                                {% endfor %}
-                            </div>
-                        </td>
-                        <td><div>{{months[index]['top_points']}}</div></td>
-                    </tr> 
+<div id="top-gw">
+    <div class="title">Highest Scoring Gameweek</div>
+    <div class="text">The players with the top scoring gameweek are</div>
+    
+    <table id="hsg-table" class="table">
+        <tr>
+            <th class="tbh">Player Name</th>
+            <th class="tbh">Gameweek</th>
+            <th class="tbh">Points</th>
+        </tr>
+        <tr>
+            <td>
+                {% for player in top_gw_players %}
+                <div>{{player}}</div>
                 {% endfor %}
-            </table>
-        </div>
+            </td>
+            <td>
+                {% for week in top_gws %}
+                <div>{{week}}</div>
+                {% endfor %}
+            </td>
+            <td>{{top_gw_points}}</td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="league-race">
+    <div class="title">League Race Graph</div>
+    <div class="graph-race"><img class="league-graph" src="../static/plot.png" alt="plot"></div>
+</div>
+
+
+
+<div id="motm">
+    <div class="title">Manager of the Month</div>
+    <div id="motm-table">
+        <table class="table">
+            <tr>
+                <th>Month</th>
+                <th>Player</th>
+                <th>Points</th>
+            </tr>
+            {% for index in range(months | length) %}
+            <tr>
+                    <td><div>{{months[index]['month_name']}}</div></td>
+                    <td>
+                        <div id="motm-players"> 
+                            {% for player in months[index]['top_scorer'] %}
+                                <div>{{player}}</div>
+                            {% endfor %}
+                        </div>
+                    </td>
+                    <td><div>{{months[index]['top_points']}}</div></td>
+                </tr> 
+            {% endfor %}
+        </table>
     </div>
 </div>
+
 {% endblock %}
