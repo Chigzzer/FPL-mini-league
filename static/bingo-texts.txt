@@ -1,0 +1,16 @@
+Salah gets more point than Halland
+Halland gets more points than Salah
+Two or more red cards in the Gameweek
+Sheffield United win a game
+Chelsea win on XG but not in the game
+An own goal is scored
+Penalty is missed
+Substitute scores
+More points on the bench
+Vice captain outperforms captain 
+Sub keeper scores more than main keeper
+Watkins plays less than 60 minutes
+Defender subs off at the 59th minute
+Hat trick is scored
+Goalkeeper saves a Penalty
+Player transferred out scored more points than the one you transferred in

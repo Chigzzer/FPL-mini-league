@@ -5,10 +5,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import random
-
+import os
 
 numbers_chosen = []
-bingo_bank = open("bingo-texts.txt").read().splitlines()
+print(os.getcwd())
+bingo_bank = open("static/bingo-bank.txt").read().splitlines()
 
 #Creating application
 app = Flask(__name__)
@@ -30,7 +31,7 @@ def generate_graph(players_dic):
         plt.plot(points, label = player['name'], color = col[col_index])
         col_index += 1
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0)
-    plt.savefig('static/plot.png', bbox_inches='tight')
+    plt.savefig('static\plot.png', bbox_inches='tight')
 
 
 def populate_page(id):
@@ -81,7 +82,7 @@ def index_league():
 
 
 @app.route("/bingo")
-def index():
+def bingo():
     size = 3;
     bingo_data = generate_card(size)
     print('below is data')
@@ -90,7 +91,7 @@ def index():
     return render_template("bingo.html", bingo_data = bingo_data, size = size)
 
 @app.route("/bingo", methods = ['POST'])
-def index_size():
+def bingo_size():
     if not request.form.get('bingo-size'):
         return redirect('/bingo')
     if int(request.form.get('bingo-size')) < 1:

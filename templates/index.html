@@ -10,7 +10,8 @@
 {% endblock %}
 
 {% block body %}
-<div id="league-section">
+<div id="main-body">
+    <div id="league-section">
     <div class="title">League Table</div>
     <div id="table">
         <table class="table">
@@ -34,9 +35,9 @@
             {% endfor %}
         </table>
     </div>
-</div>
+    </div>
 
-<div id="top-gw">
+    <div id="top-gw">
     <div class="title">Highest Scoring Gameweek</div>
     <div class="text">The players with the top scoring gameweek are</div>
     
@@ -60,17 +61,17 @@
             <td>{{top_gw_points}}</td>
         </tr>
     </table>
-</div>
+    </div>
 
 
-<div id="league-race">
+    <div id="league-race">
     <div class="title">League Race Graph</div>
     <div class="graph-race"><img class="league-graph" src="../static/plot.png" alt="plot"></div>
-</div>
+    </div>
 
 
 
-<div id="motm">
+    <div id="motm">
     <div class="title">Manager of the Month</div>
     <div id="motm-table">
         <table class="table">
@@ -94,6 +95,6 @@
             {% endfor %}
         </table>
     </div>
+    </div>
 </div>
-
 {% endblock %}
