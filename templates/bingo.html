@@ -1,0 +1,31 @@
+{% extends "template.html" %}
+
+{% block body %}
+<div id="main-section">
+    <div id="form-section"> 
+        <form method="post">
+            <label for="bingo-size">What size of Bingo do you want to play</label>
+            <select name="bingo-size" id="bingo-size-choice">
+                <option value="2"> 2*2 </option>
+                <option value="3" selected> 3*3 </option>
+                <option value="4"> 4*4 </option>
+                <option value="5"> 5*5 </option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
+    <div id="bingo-card">
+        {% for row in range(size) %}
+            <div class="bingo-row">
+                {% for column in range(size) %}
+                    <div class="bingo-cell">
+                        <div class="text">{{bingo_data[(row*size + column)]}}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
