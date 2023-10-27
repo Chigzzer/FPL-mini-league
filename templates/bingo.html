@@ -2,7 +2,6 @@
 
 {% block script %}
     <script src="static/bingo-js.js"></script>
-
 {% endblock %}
 
 {% block body %}
@@ -18,8 +17,8 @@
             </select>
             <button type="submit">Submit</button>
         </form>
-
     </div>
+
     <div id="bingo-card">
         {% for row in range(size) %}
             <div class="bingo-row">
@@ -30,7 +29,6 @@
                 {% endfor %}
             </div>
         {% endfor %}
-
     </div>
 </div>
 {% endblock %}
