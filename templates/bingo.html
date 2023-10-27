@@ -1,5 +1,10 @@
 {% extends "template.html" %}
 
+{% block script %}
+    <script src="static/bingo-js.js"></script>
+
+{% endblock %}
+
 {% block body %}
 <div id="main-section">
     <div id="form-section"> 
@@ -19,7 +24,7 @@
         {% for row in range(size) %}
             <div class="bingo-row">
                 {% for column in range(size) %}
-                    <div class="bingo-cell">
+                    <div class="bingo-cell" style="background-color: green;" onclick=selected(this)>
                         <div class="text">{{bingo_data[(row*size + column)]}}</div>
                     </div>
                 {% endfor %}
