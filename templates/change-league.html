@@ -1,0 +1,26 @@
+{% extends "template.html" %}
+
+{% block title %}
+<title>Change League</title>
+{% endblock %}
+
+{% block header %} 
+    <div id="league-name">{{league_name}}</div>
+    <div id="league-id-value">(League ID: #{{current_league_id}})</div> 
+{% endblock %}
+
+
+{% block body %}
+<div id="changeLgSec">
+    <div id="league-id-form">
+        <form method="post">
+            <label id="league-id-title" for="League ID">League ID</label>
+            <div>
+            <input type="number" name="League ID" id="league-id" min="1">
+            <button type="submit">Change League</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %} 

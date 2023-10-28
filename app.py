@@ -8,7 +8,7 @@ import random
 import os
 
 numbers_chosen = []
-print(os.getcwd())
+lg_id = 5154
 bingo_bank = open("static/bingo-bank.txt").read().splitlines()
 
 #Creating application
@@ -35,6 +35,8 @@ def generate_graph(players_dic):
 
 
 def populate_page(id):
+    global league_name
+    global current_league_id
     #league_id = request.form.get('League ID')
     data_results = data.find_league_data(id) # player_dic, top_gws, top_gw_players, top_gw_points, months, league name Superana league 5154
     players_dic = data_results[0]
@@ -67,28 +69,32 @@ def generate_card(size):
 
 
 @app.route("/")
-def index(l_id = 5154):
-   return populate_page(l_id)
+def index():
+   print("Below:")
+   print(lg_id)
+   return populate_page(lg_id)
 
 
 @app.route('/', methods=['POST'])
 def index_league():
+    global lg_id
     if not request.form.get('League ID'):
         return redirect('/')
     if int(request.form.get('League ID')) < 1:
         return redirect('/')
-    league_id = request.form.get('League ID')
-    return populate_page(league_id)
+    lg_id = request.form.get('League ID')
+    print(lg_id)
+    return populate_page(lg_id)
 
 
 @app.route("/bingo")
 def bingo():
-    size = 3;
+    size = 3
     bingo_data = generate_card(size)
     print('below is data')
     print(bingo_data)
     print(numbers_chosen)
-    return render_template("bingo.html", bingo_data = bingo_data, size = size)
+    return render_template("bingo.html", bingo_data = bingo_data, size = size, league_name = league_name, current_league_id = current_league_id)
 
 @app.route("/bingo", methods = ['POST'])
 def bingo_size():
@@ -96,20 +102,30 @@ def bingo_size():
         return redirect('/bingo')
     if int(request.form.get('bingo-size')) < 1:
         return redirect("/bingo") 
-    
     if (int(request.form.get('bingo-size')) * int(request.form.get('bingo-size')))> len(bingo_bank):
         return redirect('/bingo')
-
-
     size = int(request.form.get('bingo-size'))
     bingo_data = generate_card(size)
     print('below is data')
     print(bingo_data)
     print(numbers_chosen)
-    return render_template("bingo.html", bingo_data = bingo_data, size = size)
+    return render_template("bingo.html", bingo_data = bingo_data, size = size, league_name = league_name, current_league_id = current_league_id)
 
 
+@app.route("/change-league")
+def league_change():
+    return render_template("change-league.html", league_name = league_name, current_league_id = current_league_id)
 
+@app.route("/change-league", methods = ['POST'])
+def league_change_post():
+    global lg_id
+    if not request.form.get('League ID'):
+        return redirect('/')
+    if int(request.form.get('League ID')) < 1:
+        return redirect('/')
+    lg_id = request.form.get('League ID')
+    print(lg_id)
+    return redirect('/')
 
 
 

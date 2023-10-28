@@ -39,12 +39,13 @@
 }
 
 #league-id-form{
-    align-self: flex-end;
     display: flex;
-    width: 50%;
+    width: 100%;
     justify-content: center;
     padding: 5px;
     align-content: center;
+    border: red solid 1px;
+    flex-direction: column;
 }
 
 #league-id-title{
@@ -208,4 +209,9 @@ th, td{
     margin: 12px;;
 }
 
+#changeLgSec{
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
