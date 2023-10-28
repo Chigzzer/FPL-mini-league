@@ -4,6 +4,10 @@
 <title>Change League</title>
 {% endblock %}
 
+{% block script %}
+    <script src="static/script.js"></script>
+{% endblock %}
+
 {% block header %} 
     <div id="league-name">{{league_name}}</div>
     <div id="league-id-value">(League ID: #{{current_league_id}})</div> 
@@ -21,6 +25,18 @@
             </div>
         </form>
     </div>
-</div>
 
+
+<div class="idGuide">
+    <div class="guideQ">
+        <a class='teamID' onclick="showInstructions();" style="cursor: pointer; cursor: hand;"> How to get your Team ID</a>
+    </div>
+    <div class="instructions" id="instructions">
+        <div class='step'><br><h1>Step 1: Go to the league page</h1>
+        <img class="steps" src="../static/instructions/step1.jpg" alt="Initial view of the page once you have logged in."></div>
+        <div class='step'><br><h1>Step 2: Find the League ID from the address bar; between leagues/xxxx/standings</h1>
+        <img class="steps" src="../static/instructions/step2.png" alt="Points page highlighted."></div>
+    </div>
+</div>
+</div>
 {% endblock %} 

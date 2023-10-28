@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+
+{% block title %}
+<title>Points Tracking</title>
+{% endblock %}
+
+{% block header %} 
+    <div id="league-name">{{league_name}}</div>
+    <div id="league-id-value">(League ID: #{{current_league_id}})</div> 
+{% endblock %}
+
+{% block body %}
+    <div class="points_body">
+        <div class="plot">
+            <div>
+            <img src="/static/points_plot.jpg">
+            </div>
+        </div>
+        <div class="form">
+            <form method="POST" class="form1"> 
+                <select name="players" size="5" id="player_list">
+                    {% for team in teams %}
+                        <option class="team_name" disabled> {{ team }} </option>
+                        {% for player in playerList %}
+                            {% if player[1] == team %}
+                                <option class="options" value="{{ player[0] }}">{{ player[0] }} | {{ player[1] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </select>
+                <div class="check">
+                    <div>Add Total Points Line Graph?</div>
+                    <div><input type="checkbox" name="addOn"></div>
+                </div>
+                <div><button class="submit" type="submit" name="submit">Submit</button></div>
+            </form>
+            <div><a href="/points-track"><button class="reset" name="reset" value="reset">Reset</button></a></div>
+        </div>
+    </div>
+{% endblock %}

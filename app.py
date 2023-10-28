@@ -3,9 +3,10 @@ import data
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import numpy as np
+import pandas as pd 
 import random
-import os
+import fpl_functions as fpl
+import requests as rq
 
 numbers_chosen = []
 lg_id = 5154
@@ -14,6 +15,39 @@ bingo_bank = open("static/bingo-bank.txt").read().splitlines()
 #Creating application
 app = Flask(__name__)
 app.config['Debug'] = True
+
+api = 'https://fantasy.premierleague.com/api/bootstrap-static/#/'
+
+#Data for points tracking
+dataB = rq.get(api)
+database = dataB.json()
+mainDF = pd.DataFrame(database['elements'])
+
+# Sliiming down the dataframe to the only values I require
+slimMainDf = mainDF[['id', 'web_name', 'element_type', 'team', 'now_cost', 'total_points']]
+slimMainDf.rename(columns={'element_type' : 'position', 'web_name' : 'name', 'now_cost' : 'price'}, inplace = True)
+
+# Altering certain columns to more readable names
+for i in range(len(slimMainDf['position'])):
+    slimMainDf['position'][i] = fpl.position(slimMainDf['position'][i])
+
+for j in range(len(slimMainDf['team'])):
+    slimMainDf['team'][j] = fpl.findTeam(slimMainDf['team'][j], database)
+
+# Converting cost to correct value
+slimMainDf['price'] = slimMainDf.loc[:, ('price')]/10.0
+
+#getting the current gameweek
+gw = pd.DataFrame(database['events'])
+gws = gw[['id', 'finished']]
+for week, ids in gws.iterrows():
+    if ids['finished'] != True:
+        currentGw = ids['id']
+        break
+
+playerList, teams = fpl.getPlayerList(database)
+
+
 
 def generate_graph(players_dic):
     col = ['black', 'lightcoral', 'red', 'sandybrown', 'tan', 'olive', 'yellow', 'olivedrab', 'lawngreen', 'green', 'mediumturquoise', 'cyan', 'steelblue', 'royalblue', 'deeppink'] # would need to change depending on number of users.
@@ -127,6 +161,39 @@ def league_change_post():
     print(lg_id)
     return redirect('/')
 
+
+@app.route("/points-track")
+def ptrack():
+    plt.close()
+    playerId = 10
+    gwPoints, totalPoints = fpl.playerWeekPoints(playerId)
+    x_axis = [x for x in range(1, len(totalPoints) + 1)]
+    totalPoints = [0] * len(gwPoints)
+    plt.bar(x_axis, totalPoints)
+    plt.ylabel("Total Points")
+    plt.xlabel("Gameweek")
+    print(totalPoints)
+    plt.savefig('static/points_plot.jpg')
+    return render_template("points-track.html", playerList = playerList, teams = teams, league_name = league_name, current_league_id = current_league_id)
+
+@app.route('/points-track', methods=['POST'])
+def homeGraph():
+    #Obtain user's inputted player
+    if not request.form.get('players'):
+        return redirect('/')
+    playerName = request.form.get('players')
+    playerId = fpl.findPlayerId(database, playerName)
+    gwPoints, totalPoints = fpl.playerWeekPoints(playerId)
+    x_axis = [x for x in range(1, len(totalPoints) + 1)]
+    plt.bar(x_axis, gwPoints, width=0.2, label=playerName)
+    plt.ylabel("Total Points")
+    plt.xlabel("Gameweek")
+    plt.legend()
+    if request.form.get("addOn") != None:
+        plt.plot(x_axis, totalPoints, label=playerName)
+        plt.legend()
+    plt.savefig('static/points_plot.jpg')    
+    return render_template("points-track.html", playerList = playerList, teams = teams, league_name = league_name, current_league_id = current_league_id)
 
 
 if __name__ == '__main__':
