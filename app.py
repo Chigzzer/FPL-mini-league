@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, flash
-import data
+import static.data as data
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pandas as pd 
 import random
-import fpl_functions as fpl
+import static.fpl_functions as fpl
 import requests as rq
 
 numbers_chosen = []

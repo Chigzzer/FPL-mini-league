@@ -1,4 +1,4 @@
-import data
+import static.data as data
 
 print("The top gameweek scored: {} points".format(data.top_gw_points))
 print("The following players scored the maximum points at each of the following gameweeks: {} at {}".format(*data.top_gw_players, *data.top_gws))
