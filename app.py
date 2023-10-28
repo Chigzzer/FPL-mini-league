@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect
 import static.data as data
 import matplotlib
 matplotlib.use('Agg')
@@ -8,22 +8,22 @@ import random
 import static.fpl_functions as fpl
 import requests as rq
 
+
 numbers_chosen = []
 lg_id = 5154
 bingo_bank = open("static/bingo-bank.txt").read().splitlines()
+api = 'https://fantasy.premierleague.com/api/bootstrap-static/#/'
 
-#Creating application
+# Creating application
 app = Flask(__name__)
 app.config['Debug'] = True
 
-api = 'https://fantasy.premierleague.com/api/bootstrap-static/#/'
-
-#Data for points tracking
+# Data for points tracking
 dataB = rq.get(api)
 database = dataB.json()
 mainDF = pd.DataFrame(database['elements'])
 
-# Sliiming down the dataframe to the only values I require
+# Sliming down the dataframe to the only values I require
 slimMainDf = mainDF[['id', 'web_name', 'element_type', 'team', 'now_cost', 'total_points']]
 slimMainDf.rename(columns={'element_type' : 'position', 'web_name' : 'name', 'now_cost' : 'price'}, inplace = True)
 
@@ -44,9 +44,7 @@ for week, ids in gws.iterrows():
     if ids['finished'] != True:
         currentGw = ids['id']
         break
-
 playerList, teams = fpl.getPlayerList(database)
-
 
 
 def generate_graph(players_dic):
@@ -80,10 +78,10 @@ def populate_page(id):
     months = data_results[4]
     league_name = data_results[5]
     current_league_id = data_results[6]
-
     print(top_gw_players)
     generate_graph(players_dic)
     return render_template("index.html", current_league_id = current_league_id, top_gw_points = top_gw_points, top_gw_players = top_gw_players, top_gws = top_gws, months = months, players = players_dic, league_name = league_name)
+
 
 def get_number(length):
     number = random.randint(0, length-1)
@@ -91,6 +89,7 @@ def get_number(length):
         number = random.randint(0, length -1)
     numbers_chosen.append(number)
     return number
+
 
 def generate_card(size):
     bingo_card_data = []
@@ -130,6 +129,7 @@ def bingo():
     print(numbers_chosen)
     return render_template("bingo.html", bingo_data = bingo_data, size = size, league_name = league_name, current_league_id = current_league_id)
 
+
 @app.route("/bingo", methods = ['POST'])
 def bingo_size():
     if not request.form.get('bingo-size'):
@@ -149,6 +149,7 @@ def bingo_size():
 @app.route("/change-league")
 def league_change():
     return render_template("change-league.html", league_name = league_name, current_league_id = current_league_id)
+
 
 @app.route("/change-league", methods = ['POST'])
 def league_change_post():
@@ -175,6 +176,7 @@ def ptrack():
     print(totalPoints)
     plt.savefig('static/points_plot.jpg')
     return render_template("points-track.html", playerList = playerList, teams = teams, league_name = league_name, current_league_id = current_league_id)
+
 
 @app.route('/points-track', methods=['POST'])
 def homeGraph():
