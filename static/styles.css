@@ -29,10 +29,6 @@
     margin-bottom: 0.25%;
 }
 
-#league-name{
-    font-size: 50px;
-}
-
 #league-id-value{
     font-size: 20px;
     font-style: italic;
@@ -92,7 +88,7 @@ button{
     }
 
 .title{
-    font-size: 48px;
+    font-size: 50px;
     align-self: center;
     text-align: center;
     width: auto;
