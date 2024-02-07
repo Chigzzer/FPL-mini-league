@@ -63,7 +63,7 @@ def generate_graph(players_dic):
         plt.plot(points, label = player['name'], color = col[col_index])
         col_index += 1
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0)
-    plt.savefig('\static\plot.png', bbox_inches='tight')
+    plt.savefig('static\plot.png', bbox_inches='tight')
 
 
 def populate_page(id):
