@@ -4,17 +4,23 @@ import pandas as pd
 # Setting values
 #league_id =  5154
 top_gw_points = 0
+worst_gw_points = 9999
 months = []
 top_gws = []
 top_gw_players = []
+worst_gws = []
+worst_gw_players = []
 players_dic = []
 current_gw = 0
 def find_league_data(league_id):
 
     top_gw_points = 0
+    worst_gw_points = 9999
     months = []
     top_gws = []
     top_gw_players = []
+    worst_gws = []
+    worst_gw_players = []
     players_dic = []
     current_gw = 0
     #players_dic.append({'name': 'test', 'player_id': 27121})
@@ -65,6 +71,19 @@ def find_league_data(league_id):
                         player[month['month_name']] = 0 
                     player[month['month_name']] += week['points'] - week['event_transfers_cost']
 
+        # Worst gw check
+            if week['points'] == worst_gw_points: # if points value is identical to the current highest, append the winner to the list
+                worst_gw_players.append(player['name'])
+                worst_gws.append(week['event'])
+            elif week['points'] < worst_gw_points: # if the total points is higher than the value, remove the current winners and update the list
+                worst_gw_points = week['points']
+                worst_gws.clear()
+                worst_gw_players.clear()
+                worst_gw_players.append(player['name'])
+                worst_gws.append(week['event'])
+
+
+
             # Comparing that gw points with the current maximum
             if week['points'] == top_gw_points: # if points value is identical to the current highest, append the winner to the list
                 top_gw_players.append(player['name'])
@@ -110,5 +129,5 @@ def find_league_data(league_id):
             elif player[month['month_name']] == month['top_points']:
                 print(player['name'])
                 month['top_scorer'].append(player['name'])
-    return [players_dic, top_gws, top_gw_players, top_gw_points, months, league_name, league_id] 
+    return [players_dic, top_gws, top_gw_players, top_gw_points, months, league_name, league_id, worst_gw_players, worst_gw_points, worst_gws] 
 

@@ -129,6 +129,14 @@ th, td{
     flex-direction: column;
 }
 
+#low-gw{
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .tbh{
     padding:25px;
 }

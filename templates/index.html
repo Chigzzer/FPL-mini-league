@@ -61,9 +61,28 @@
         </table>
     </div>
 
-    <div id="league-race">
-        <div class="title">League Race Graph</div>
-        <div class="graph-race"><img class="league-graph" src="../static/plot.png" alt="plot"></div>
+    <div id="low-gw">
+        <div class="title">Lowest Scoring Gameweek</div>
+        <table id="lsg-table" class="table">
+            <tr>
+                <th class="tbh">Player Name</th>
+                <th class="tbh">Gameweek</th>
+                <th class="tbh">Points</th>
+            </tr>
+            <tr>
+                <td>
+                    {% for player in worst_gw_players %}
+                    <div>{{player}}</div>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for week in worst_gws %}
+                    <div>{{week}}</div>
+                    {% endfor %}
+                </td>
+                <td>{{worst_gw_points}}</td>
+            </tr>
+        </table>
     </div>
 
     <div id="motm">
