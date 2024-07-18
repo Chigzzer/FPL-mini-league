@@ -10,7 +10,7 @@ import requests as rq
 
 
 numbers_chosen = []
-lg_id = 5154
+lg_id = 16147
 bingo_bank = open("static/bingo-bank.txt").read().splitlines()
 api = 'https://fantasy.premierleague.com/api/bootstrap-static/#/'
 
@@ -70,7 +70,7 @@ def populate_page(id):
     global league_name
     global current_league_id
     #league_id = request.form.get('League ID')
-    data_results = data.find_league_data(id) # player_dic, top_gws, top_gw_players, top_gw_points, months, league name Superana league 5154
+    data_results = data.find_league_data(id) # player_dic, top_gws, top_gw_players, top_gw_points, months, league name Superana league 16147
     players_dic = data_results[0]
     top_gws = data_results[1]
     top_gw_players = data_results[2]
