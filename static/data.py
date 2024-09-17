@@ -20,6 +20,7 @@ def find_league_data(league_id):
     #players_dic.append({'name': 'test', 'player_id': 27121})
     # API Link
     league_api = 'https://fantasy.premierleague.com/api/leagues-classic/' + str(league_id) + '/standings'
+   # league_api = 'https://fantasy.premierleague.com/api/leagues-classic/16147/standings'
     general_api = 'https://fantasy.premierleague.com/api/bootstrap-static/'
 
 
@@ -110,5 +111,7 @@ def find_league_data(league_id):
             elif player[month['month_name']] == month['top_points']:
                 print(player['name'])
                 month['top_scorer'].append(player['name'])
+    print("HERE)")
+    print(players_dic, top_gws, top_gw_players, top_gw_points, months, league_name, league_id)
     return [players_dic, top_gws, top_gw_players, top_gw_points, months, league_name, league_id] 
 
